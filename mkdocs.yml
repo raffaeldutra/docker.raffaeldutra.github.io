@@ -1,0 +1,84 @@
+site_name: Docker
+site_url: https://docker.rafaeldutra.me
+site_author: Rafael Dutra
+site_description: >-
+  Olá! Me chamo Rafael Dutra e aqui encontrará documentação e dicas para Docker.
+copyright: Copyright &copy; 2016 - 2023 Rafael Dutra
+edit_uri: ''
+
+repo_url: https://github.com/raffaeldutra/docker.raffaeldutra.github.io
+repo_name: docker.raffaeldutra.github.io
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/raffaeldutra
+    - icon: fontawesome/brands/gitlab
+      link: https://gitlab.com/raffaeldutra
+    - icon: fontawesome/brands/docker
+      link: https://hub.docker.com/raffaeldutra
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/rafaeldutra
+  plugins:
+    markdownextradata:
+      data: ../data
+
+nav:
+  - Docker: index.md
+  - Instalando: installing.md
+
+  - Containers:
+    - Rodando Containers: c1/running-containers.md
+    - Gerenciando Containers: c1/managing-containers.md
+    - Manipulando Containers: c1/manipulate-containers.md
+    - Limpando: c1/cleaning.md
+
+  - Imagens:
+    - Dockerfile: c2/dockerfile.md
+    - Criando Imagens: c2/creating-image.md
+    - Criando Imagens sem Dockerfile: c2/creating-image-no-dockerfile.md
+
+  - Volumes:
+    - Introdução: c3/volumes.md
+    - Storage Drivers: c3/storage-drivers.md
+
+  - Docker Compose:
+    - docker-compose.md
+
+theme:
+  name: material
+  features:
+    - search.suggest
+    - search.highlight
+    - navigation.indexes
+    - navigation.footer
+    - navigation.sections
+    - navigation.expand
+    - content.tabs.link
+    - content.tooltips
+    - content.code.annotate
+    - content.code.copy
+    - content.code.select
+  language: pt-BR
+
+  palette:
+  - scheme: default
+    primary: teal
+    accent: purple
+    toggle:
+      icon: material/brightness-7
+      name: Switch to dark mode
+  - scheme: slate
+    primary: teal
+    accent: lime
+    toggle:
+      icon: material/brightness-4
+      name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+markdown_extensions:
+  - admonition
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
