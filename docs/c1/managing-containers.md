@@ -9,7 +9,7 @@ Abra um browser e acesse http://localhost:45000 e a página não foi localizada,
 Execute o seguinte comando:
 
 ```
-docker run --detach --publish 45000:80 nginx
+docker container run --detach --publish 45000:80 nginx
 ```
 
 Agora abra novamente o endereço http://localhost:45000 - Magic!

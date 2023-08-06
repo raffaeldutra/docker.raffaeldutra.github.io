@@ -3,7 +3,7 @@
 Sim, nós também podemos criar imagens sem precisar de Dockerfile. Vamos ver o seguinte:
 
 ```
-docker run --interactive --tty ubuntu /bin/bash
+docker container run --interactive --tty ubuntu /bin/bash
 ```
 
 Com este comando nós "entramos" no container. Dentro do container podemos fazer o que quisermos, como adicionar arquivos, remover arquivos, adicionar pacotes e etc.

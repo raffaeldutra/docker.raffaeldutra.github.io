@@ -47,7 +47,7 @@ docker <comando> --help
 ## Rodando um container
 
 ```
-docker run alpine hostname
+docker container run alpine hostname
 ```
 
 Você provavelmente teve uma resposta com letras e números, algo como: *7ed46aef747a*.
@@ -55,7 +55,7 @@ O que acabamos de ver aqui é o nome do container no momento que você o executo
 
 Vamos explicar por partes o que o comando acima faz:
 
-* **docker run** executa um container
+* **docker container run** executa um container
 * **alpine** é o nome da imagem que estamos Utilizando
 * **hostname** é o comando que é executado dentro do container, por isso obtemos aquele conjunto de números e letras como resposta quando executamos o comando.
 
@@ -114,7 +114,7 @@ docker search <imagem>
 docker rmi alpine
 ```
 
-> Aqui iremos obter um erro, pois temos aquele primeiro container -- docker run alpine hostname -- em funcionamento e não é possível remover uma imagem onde há containers rodando.
+> Aqui iremos obter um erro, pois temos aquele primeiro container -- docker container run alpine hostname -- em funcionamento e não é possível remover uma imagem onde há containers rodando.
 
 * Como saber se a imagem que vou utilizar é uma imagem oficial?
 

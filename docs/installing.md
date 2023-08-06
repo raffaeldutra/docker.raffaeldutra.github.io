@@ -68,7 +68,7 @@ sudo apt-get install docker-ce
 Vamos testar se está tudo funcionando
 
 ```
-sudo docker run hello-world
+sudo docker container run hello-world
 ```
 
 ### Maneira 2

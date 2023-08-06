@@ -50,7 +50,7 @@ Chegou a hora de brincar um pouco com volumes. Temos dois "modelos" de como util
 Aqui podemos escolher o que queremos do nosso host e mapearmo este diretório lá pra dentro do container. Exemplo:
 
 ```
-docker run --rm --volume /tmp:/root/tmp alpine /bin/sh -c 'echo Eu sou o container de nome $(hostname) > /root/tmp/meu-querido-container'
+docker container run --rm --volume /tmp:/root/tmp alpine /bin/sh -c 'echo Eu sou o container de nome $(hostname) > /root/tmp/meu-querido-container'
 ```
 
 2. Mapeando dados de um container

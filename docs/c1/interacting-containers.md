@@ -5,7 +5,7 @@ Até agora fizemos alguns poucos exemplos, vamos entrar de fato em um container 
 Execute o seguinte comando:
 
 ```
-docker run --interactive --tty --publish 45000:80 nginx /bin/bash
+docker container run --interactive --tty --publish 45000:80 nginx /bin/bash
 ```
 
 * Edite o arquivo **/usr/share/nginx/html/index.html** com o vim

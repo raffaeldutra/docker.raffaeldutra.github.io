@@ -24,7 +24,7 @@ docker build --tag fossday/nginx:0.1 .
 Agora vamos executar o nosso container baseado na imagem que acabamos de gerar.
 
 ```
-docker run --interactive --tty --publish 46000:80 fossday/nginx:0.1 /bin/bash
+docker container run --interactive --tty --publish 46000:80 fossday/nginx:0.1 /bin/bash
 ```
 
 Vamos acessa a url e ver o que nos espera, http://localhost:46000

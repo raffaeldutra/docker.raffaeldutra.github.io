@@ -1,6 +1,6 @@
 # Manipulando containers
 
-O comando que executamos incialmente *docker run alpine hostname* é o mais básico possível para termos um container em "funcionamento". O "funcionamento" entre aspas é o que iremos discutir neste momento.
+O comando que executamos incialmente *docker container run alpine hostname* é o mais básico possível para termos um container em "funcionamento". O "funcionamento" entre aspas é o que iremos discutir neste momento.
 
 Antes tentamos remover a imagem *alpine* e obtivemos um erro, mas o que causou o erro? Foi devido que o container está rodando. Então como sabemos se um container está rodando? ou melhor, como sabemos o "status" de um container?
 
