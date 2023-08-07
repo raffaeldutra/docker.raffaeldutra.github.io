@@ -5,7 +5,7 @@ Para criamos nossa imagem, precisamos de um arquivo Dockerfile conforme vistoaci
 Para criarmos ela, devemos executar o comando
 
 ```
-docker build --tag nomeDaImagemQueDeseja:versao.1 .
+docker image build --tag nomeDaImagemQueDeseja:versao.1 .
 ```
 
 Devemos atentar par duas coisas aqui:
@@ -18,7 +18,7 @@ Devemos atentar par duas coisas aqui:
 É realmente simples gerarmos uma imagem com o nosso arquivo, segue um exemplo de como isto pode ser feito.
 
 ```
-docker build --tag fossday/nginx:0.1 .
+docker image build --tag fossday/nginx:0.1 .
 ```
 
 Agora vamos executar o nosso container baseado na imagem que acabamos de gerar.
