@@ -19,7 +19,7 @@ Antigamente, tinhamos uma grande barreira de como desenvolvedores e operadores l
 
 Quando utilizamos _Docker_, temos todos os passos de como a infraestrutura para este software foi criada em uma única imagem, viabilizando e muito em como o time de operações irá colocar este software em funcionamento. quais os diretórios, arquivos, scripts, comandos e serviço que devem ser criados e executados para que o software funcione.
 
-Uma vez definido toda esta infaestrutura, iremos empacotar este software em uma imagem e esta imagem pode ser executada em qualquer Sistema Operacional devido ao modelo que _Docker_ utiliza de padronização de como aquele software deve ser construído.
+Uma vez definida toda esta infaestrutura, empacotamos este software em uma imagem e esta imagem pode ser executada em qualquer Sistema Operacional devido ao modelo que _Docker_ utiliza de padronização de como aquele software deve ser construído.
 
 Para rodar estas imagens precisamos criar os containers e estes containers é que irão de fato rodar sua aplicação e fazer ela ter vida. Quando o container iniciar, _Docker_ automaticamente isolará os recursos utilizados por este container, como memória, processamento e disco no hardware, garantindo assim a existência dos demais softwares com diferentes tecnologias possam existir sem a influência dos demais containers em execução.
 
