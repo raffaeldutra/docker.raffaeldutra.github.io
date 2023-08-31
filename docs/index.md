@@ -27,4 +27,4 @@ Toda vez que for iniciado um novo container, apenas o processo é criado levando
 
 !!! note "Quando estamos falando em Hardware"
 
-    Estamos falando do seu laptop, desktop ou servidor, o importante é entender que todos os containers feitos em _Docker_ são isolados e que ao executar o comando `ps -faux` você irá ver estes containers como sendo apenas processos da sua máquina.
+    Estamos falando do seu laptop, desktop ou servidor. O importante é entender que todos os containers feitos em _Docker_ são isolados e que ao executar o comando `ps -faux` você verá estes containers como sendo apenas processos da sua máquina.
