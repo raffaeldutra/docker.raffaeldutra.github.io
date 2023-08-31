@@ -23,7 +23,7 @@ Uma vez definida toda esta infaestrutura, empacotamos este software em uma image
 
 Para rodar estas imagens precisamos criar os containers e estes containers é que vão de fato rodar sua aplicação e fazer ela ganhar vida. Quando o container iniciar, _Docker_ automaticamente isolará os recursos utilizados por este container, como memória, processamento e disco no hardware, garantindo assim a existência dos demais softwares com diferentes tecnologias sem a influência dos demais containers em execução.
 
-Toda vez que for iniciado um novo container, apenas o processo é criado levando com ele todas bibliotecas e configurações necessárias para que este processo fique completamente isolado, criando um overhead minímo, o que não acontece quando utilizamos Máquinas Virtuais (veremos um desenho sobre overhead e a diferença entre Máquinas Virtuais e contaiers mais a frente).
+Toda vez que for iniciado um novo container, apenas o processo é criado, levando com ele todas bibliotecas e configurações necessárias para que este processo fique completamente isolado, criando um overhead minímo, o que não acontece quando utilizamos Máquinas Virtuais (veremos um desenho sobre overhead e a diferença entre Máquinas Virtuais e containers mais à frente).
 
 !!! note "Quando estamos falando em Hardware"
 
