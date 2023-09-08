@@ -1,0 +1,7 @@
+{
+  "image": "squidfunk/mkdocs-material:9",
+  "runArgs": ["-it", "-p=8000:8000"],
+  "workspaceMount": "source=${localWorkspaceFolder},target=/docs,type=bind",
+  "workspaceFolder": "/docs",
+  "postStartCommand": "mkdocs serve --dev-addr=0.0.0.0:8000"
+}
