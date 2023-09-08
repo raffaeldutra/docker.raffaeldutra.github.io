@@ -48,7 +48,7 @@ squidfunk/mkdocs-material:9 new .
 docker container run \
 --rm \
 -it \
--p 8000:8000 \
+-p 8000:8001 \
 -v $(pwd):/docs \
 squidfunk/mkdocs-material:9
 ```
