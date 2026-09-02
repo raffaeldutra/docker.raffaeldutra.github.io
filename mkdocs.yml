@@ -62,18 +62,24 @@ theme:
   language: pt-BR
 
   palette:
-  - scheme: default
+  - media: "(prefers-color-scheme)"
+    toggle:
+      icon: material/brightness-auto
+      name: Seguir preferência do sistema
+  - media: "(prefers-color-scheme: light)"
+    scheme: default
     primary: teal
     accent: purple
     toggle:
       icon: material/brightness-7
-      name: Switch to dark mode
-  - scheme: slate
+      name: Mudar para o modo escuro
+  - media: "(prefers-color-scheme: dark)"
+    scheme: slate
     primary: teal
     accent: lime
     toggle:
       icon: material/brightness-4
-      name: Switch to light mode
+      name: Mudar para o modo claro
   font:
     text: Roboto
     code: Roboto Mono
