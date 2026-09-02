@@ -9,6 +9,9 @@ edit_uri: ''
 repo_url: https://github.com/raffaeldutra/docker.raffaeldutra.github.io
 repo_name: docker.raffaeldutra.github.io
 extra:
+  analytics:
+    provider: google
+    property: G-QJH8ZT9QS2
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/raffaeldutra
@@ -37,10 +40,25 @@ nav:
     - Dockerfile: c2/dockerfile.md
     - Criando Imagens: c2/creating-image.md
     - Criando Imagens sem Dockerfile: c2/creating-image-no-dockerfile.md
+    - Multi-stage builds: c2/multi-stage.md
+    - BuildKit e buildx: c2/buildkit.md
 
   - Volumes:
     - Introdução: c3/volumes.md
     - Storage Drivers: c3/storage-drivers.md
+
+  - Redes:
+    - Redes no Docker: c4/networking.md
+    - Rede bridge: c4/bridge.md
+    - host, none, macvlan e overlay: c4/advanced-networks.md
+
+  - Registries e Distribuição:
+    - Registries e Docker Hub: c5/registry.md
+    - Distribuindo imagens: c5/distribuindo-imagens.md
+
+  - Segurança:
+    - Segurança de containers: c6/seguranca.md
+    - Boas práticas de imagens: c6/boas-praticas.md
 
   - Docker Compose:
     - docker-compose.md
