@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{#
+  Google AdSense.
+
+  O script abaixo carrega o AdSense em todas as páginas. Com o modo
+  "Auto Ads" ativado no painel do AdSense (https://adsense.google.com/),
+  o Google posiciona os anúncios automaticamente e nada mais precisa ser
+  feito no Markdown.
+
+  Para blocos manuais, insira um <ins class="adsbygoogle" ...> com o
+  data-ad-slot correspondente diretamente no Markdown ou em um parcial
+  do tema (ex.: overrides/partials/content.html).
+#}
+{% block extrahead %}
+  {{ super() }}
+  <script async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6990614348596318"
+    crossorigin="anonymous"></script>
+{% endblock %}

@@ -65,6 +65,7 @@ nav:
 
 theme:
   name: material
+  custom_dir: overrides
   features:
     - search.suggest
     - search.highlight
