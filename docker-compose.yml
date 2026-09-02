@@ -1,0 +1,8 @@
+services:
+  docs:
+    image: squidfunk/mkdocs-material:9
+    command: serve --dev-addr=0.0.0.0:8001
+    ports:
+      - "${BIND:-0.0.0.0}:${PORT:-8011}:8001"
+    volumes:
+      - .:/docs
