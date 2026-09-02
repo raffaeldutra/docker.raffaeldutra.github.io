@@ -49,6 +49,15 @@ Excelente, tudo funcionando como esperado, mas e se eu quero apenas listar algum
 docker exec <id do container> ou <nome> ls -la /usr/share/nginx/html
 ```
 
+* E se eu quiser um shell interativo dentro do container que já está rodando, sem
+  mexer no processo principal (PID 1)? Essa é a forma mais comum no dia a dia:
+
+```
+docker exec --interactive --tty <id do container> ou <nome> bash
+```
+
+> Se a imagem não tiver o `bash` (imagens enxutas como Alpine), use `sh`.
+
 * Como faço para visualizar o log de um container?
 
 ```

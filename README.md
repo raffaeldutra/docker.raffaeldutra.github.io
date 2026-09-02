@@ -23,11 +23,11 @@ curl -fsSL https://get.docker.com/ | sh
 <a name="como-obter-docker"></a>
 ## Como obter Docker?
 
-- [Link para documentação oficial](https://docs.docker.com/install/)
-    - [Instalando em Windows](https://docs.docker.com/docker-for-windows/install/)
-    - [Instalando em Debian](https://docs.docker.com/install/linux/docker-ce/debian/)
-    - [Instalando em Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
-    - [Instalando em MacOS](https://docs.docker.com/docker-for-mac/install/)
+- [Link para documentação oficial](https://docs.docker.com/engine/install/)
+    - [Docker Desktop para Windows](https://docs.docker.com/desktop/install/windows-install/)
+    - [Docker Desktop para macOS](https://docs.docker.com/desktop/install/mac-install/)
+    - [Docker Engine no Debian](https://docs.docker.com/engine/install/debian/)
+    - [Docker Engine no Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
 
 
 <a name="criando-novo-site"></a>

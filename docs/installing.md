@@ -1,93 +1,109 @@
 # Instalando
 
-Para instalar Docker CE (Community Edition), você precisa de versão 64 bits.
+Para instalar o **Docker Engine** você precisa de um sistema operacional 64 bits.
+Hoje há basicamente três caminhos:
 
-Agora para instalarmos isso vai depender de bastante coisa, porém vamos trabalhar de maneira genérica, então segue duas formas:
+1. **Docker Desktop** — para Windows, macOS e também Linux. Instala o Docker
+   Engine, a CLI, o Docker Compose, o Buildx e uma interface gráfica.
+   Recomendado para máquinas de desenvolvimento.
+2. **Docker Engine** — apenas o daemon e a CLI, instalado direto no Linux via
+   repositório de pacotes. Recomendado para servidores.
+3. **Script de conveniência** (`get.docker.com`) — atalho para ambientes de teste.
 
-Forma 1.
+!!! note "E a máquina virtual?"
 
-* Uma máquina virtual (VM): pode ser utilizando Virtualbox, VMware, tanto faz.
-  * VM com acesso para internet.
-  * VM com placa em modo bridge.
-  * Curl instalado **sudo apt-get install curl --yes**
+    Você não precisa mais de uma VM com interface em modo bridge para
+    acompanhar os exemplos. Docker rodando nativo no Linux, no WSL 2 (Windows)
+    ou no Docker Desktop (macOS) atende a tudo que veremos aqui. Se usar uma VM,
+    lembre-se de acessar os serviços pelo IP dela, não por `localhost`.
 
-> Atenção: esta VM precisa ter uma interface em modo bridge para ter acesso aos containers que iremos estudar durante o workshop
+## Docker Desktop
 
-Forma 2.
+- [Docker Desktop para Windows](https://docs.docker.com/desktop/install/windows-install/) (requer WSL 2)
+- [Docker Desktop para macOS](https://docs.docker.com/desktop/install/mac-install/) (Apple Silicon ou Intel)
+- [Docker Desktop para Linux](https://docs.docker.com/desktop/install/linux-install/)
 
-* Se você já for usuário Linux nativo, pode realizar diretamente sem necessitar de máquina virtual.
+Depois de instalar, valide com:
 
-## Formas de instalar docker
-
-Existem algumas formas de instalar Docker, porém vamos ver as duas mais comuns.
-
-### Maneira 1
-
-Remova a versão antiga (caso tiver).
-
-```
-sudo apt-get remove docker docker-engine docker.io
-```
-
-Instale os pacotes que permitem que o *apt* possa utilizar repositórios com https
-
-```
-sudo apt-get install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    software-properties-common
+```bash
+docker version
+docker compose version
+docker run hello-world
 ```
 
-Agora instale a chave GPG do Docker
+## Docker Engine no Linux (Ubuntu/Debian)
 
-> Preste atenção na sua distribuição abaixo
+O procedimento abaixo segue a
+[documentação oficial](https://docs.docker.com/engine/install/) e usa o formato
+atual de chaves de repositório (`/etc/apt/keyrings`), já que `apt-key` foi
+descontinuado.
 
+Remova pacotes antigos ou conflitantes, se existirem:
+
+```bash
+for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do
+  sudo apt-get remove -y $pkg
+done
 ```
-curl -fsSL https://download.docker.com/linux/$(lsb_release -is | tr '[:upper:]' '[:lower:]')/gpg | sudo apt-key add -
-```
 
-Adicione o repositório.
+Configure o repositório do Docker:
 
-```
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu (lsb_release -cs) stable"
-```
+```bash
+sudo apt-get update
+sudo apt-get install -y ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
 
-Vamos atualizar o index dos pacotes apt
+# troque "ubuntu" por "debian" se for o seu caso
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
 
-```
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] \
+  https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" \
+  | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
 sudo apt-get update
 ```
 
-Vamos instalar a última versão do Docker Community Edition
-
-```
-sudo apt-get install docker-ce
-```
-
-Vamos testar se está tudo funcionando
-
-```
-sudo docker container run hello-world
-```
-
-### Maneira 2
-
-> Dependendo da versão do seu Ubuntu, Debian e etc, pode
-Baixe Docker com o comando mágico (funciona somente em Sistemas Operacionais). Windows, sorry :-)
+Instale o Engine, a CLI, o containerd e os plugins do Buildx e do Compose:
 
 ```bash
-curl -fsSL https://get.docker.com/ | sh
-sudo usermod -aG docker <usuario>
+sudo apt-get install -y \
+  docker-ce \
+  docker-ce-cli \
+  containerd.io \
+  docker-buildx-plugin \
+  docker-compose-plugin
 ```
 
-Depois disso, você precisa fazer logoff para funcionar com este usuário.
+Teste:
 
+```bash
+sudo docker run hello-world
+```
 
-### Como obter Docker para outros sistemas?
+Para rodar `docker` sem `sudo`, adicione seu usuário ao grupo `docker` e reinicie
+a sessão:
 
-- [Link para documentação oficial](https://docs.docker.com/install/)
-    - [Instalando em Windows](https://docs.docker.com/docker-for-windows/install/)
-    - [Instalando em Debian](https://docs.docker.com/install/linux/docker-ce/debian/)
-    - [Instalando em Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
-    - [Instalando em MacOS](https://docs.docker.com/docker-for-mac/install/)
+```bash
+sudo usermod -aG docker "$USER"
+```
+
+## Script de conveniência
+
+Rápido para VMs descartáveis e ambientes de teste. Não recomendado para produção.
+
+```bash
+curl -fsSL https://get.docker.com | sh
+sudo usermod -aG docker "$USER"
+```
+
+Faça logoff e login novamente para o grupo `docker` valer.
+
+## Documentação oficial
+
+- [Visão geral da instalação](https://docs.docker.com/engine/install/)
+- [Debian](https://docs.docker.com/engine/install/debian/)
+- [Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
+- [CentOS / RHEL / Fedora](https://docs.docker.com/engine/install/rhel/)
+- [Passos pós-instalação no Linux](https://docs.docker.com/engine/install/linux-postinstall/)

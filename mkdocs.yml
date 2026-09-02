@@ -3,7 +3,7 @@ site_url: https://docker.rafaeldutra.me
 site_author: Rafael Dutra
 site_description: >-
   Olá! Me chamo Rafael Dutra e aqui encontrará documentação e dicas para Docker.
-copyright: Copyright &copy; 2016 - 2023 Rafael Dutra
+copyright: Copyright &copy; 2016 - 2026 Rafael Dutra
 edit_uri: ''
 
 repo_url: https://github.com/raffaeldutra/docker.raffaeldutra.github.io
@@ -30,6 +30,7 @@ nav:
     - Rodando Containers: c1/running-containers.md
     - Gerenciando Containers: c1/managing-containers.md
     - Manipulando Containers: c1/manipulate-containers.md
+    - Interagindo com Containers: c1/interacting-containers.md
     - Limpando: c1/cleaning.md
 
   - Imagens:

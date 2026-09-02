@@ -1,40 +1,90 @@
 # Dockerfile
 
-Chegamos então ao arquivo principal de Docker, o tão conhecido **Dockerfile**. Dockerfile é um simples arquivo texto que contem todos os comandos para gerar uma imagem, apenas isso em sua forma mais resumida.
+Chegamos ao arquivo principal do Docker, o **Dockerfile**: um arquivo texto com
+todas as instruções para gerar uma imagem.
 
-Se você já conhece um pouco de `CLI (Command Line Interface)` de GNU/Linux, provavelmente não terá nenhum problema para utilizar Dockerfile, pois ele é basicamente comando que você já usa.
+Se você já conhece um pouco de `CLI` de GNU/Linux, não terá dificuldade, pois
+boa parte das instruções são comandos que você já usa.
 
-Aqui está a lista dos comandos que você pode utilizar dentro do seu arquivo. Vamos explicar rapidamente o que cada um faz.
+## Principais instruções
 
-* `FROM` - define a imagem base para você iniciar sua nova imagem.
-* `LABEL` - aqui é possível definir algumas informações para melhor organização de suas imagens, você pode usar quantas labels quiser.
-* `ENV` - variáveis de ambiente que serão utilizadas dentro do container quando você invocar a imagem.
-* `RUN` - aqui irão entrar todos os comandos que deseja executar assim que iniciar a buildar sua imagem.
-* `WORKDIR` - de onde serão executados os comandos, este comando é um path apenas.
-* `VOLUME` - possibilita o acesso de um diretório na sua máquina real.
-* `USER` - qual usuário irá executar os comandos dentro da imagem, o padrão é root.
-* `ADD ou COPY` - copia arquivos e diretórios de sua máquina local para dentro da imagem.
-* `EXPOSE` - expõe uma porta para ser acessada publicamente, como a porta 80, por exemplo
-* `CMD` - executa um comando assim que você invocar a imagem.
-* `ENTRYPOINT` - parecido com o `CMD`, mas aqui normalmente você coloca um script para ser iniciado.
+* `FROM` — define a imagem base. Pode aparecer mais de uma vez (multi-stage build).
+* `ARG` — variável disponível apenas durante o build (`docker build --build-arg`).
+* `LABEL` — metadados da imagem (descrição, `org.opencontainers.image.*`, etc.).
+* `ENV` — variáveis de ambiente que ficam disponíveis no container. Use a forma
+  `ENV chave=valor`.
+* `RUN` — executa um comando na etapa de build, gerando uma nova camada.
+* `WORKDIR` — diretório de trabalho para as instruções seguintes.
+* `COPY` — copia arquivos e diretórios do contexto de build para a imagem.
+  **Prefira `COPY` a `ADD`.**
+* `ADD` — como `COPY`, mas também extrai tarballs locais e aceita URLs. Use só
+  quando precisar desse comportamento.
+* `USER` — usuário que executa as instruções seguintes e o processo do container.
+  Rode como usuário não-root sempre que possível.
+* `EXPOSE` — documenta a porta que o container escuta (não publica nada sozinho).
+* `VOLUME` — marca um caminho como ponto de montagem de volume.
+* `HEALTHCHECK` — comando que o Docker usa para saber se o container está saudável.
+* `ENTRYPOINT` — o executável principal do container.
+* `CMD` — argumentos padrão para o `ENTRYPOINT`, ou o comando padrão quando não
+  há `ENTRYPOINT`.
+* `STOPSIGNAL` — sinal enviado ao parar o container.
 
-Aqui um exemplo utilizando como base a imagem Nginx que já estavámos utilizando anteriormente com o máximo de comandos que o Dockerfile suporta e que vimos acima.
+> Use `COPY`/`ADD` e `RUN` na forma **exec** (lista JSON) para `ENTRYPOINT` e
+> `CMD`: `CMD ["nginx", "-g", "daemon off;"]`. Assim o processo recebe os sinais
+> corretamente (PID 1).
 
-```bash
-FROM nginx:latest
+## `.dockerignore`
 
-LABEL description="Docker imagem que será gerada no nosso exmeplo."
-LABEL maintainer="Rafael Dutra <raffaeldutra@gmail.com>"
+Coloque um arquivo `.dockerignore` ao lado do Dockerfile para manter o contexto
+de build pequeno e não copiar `.git`, `node_modules`, segredos e afins:
 
-ENV FOSSDAY Lajeado
-ENV QUANDO 5/5 2018
+```
+.git
+node_modules
+*.log
+.env
+```
+
+## Exemplo
+
+```dockerfile
+# syntax=docker/dockerfile:1
+FROM nginx:1.27
+
+LABEL org.opencontainers.image.description="Imagem de exemplo do workshop."
+LABEL org.opencontainers.image.authors="Rafael Dutra <raffaeldutra@gmail.com>"
+
+ENV EVENTO="Docker Workshop" \
+    ANO="2026"
 
 RUN apt-get update && \
-    apt-get install git --yes
+    apt-get install -y --no-install-recommends git && \
+    rm -rf /var/lib/apt/lists/*
 
-ADD index.html /usr/share/nginx/html/index.html
+COPY index.html /usr/share/nginx/html/index.html
 
 EXPOSE 80
 
+HEALTHCHECK --interval=30s --timeout=3s \
+  CMD curl -fsS http://localhost/ || exit 1
+
 CMD ["nginx", "-g", "daemon off;"]
+```
+
+## Multi-stage build
+
+Para gerar imagens finais pequenas, compile em um estágio e copie só o
+artefato para uma imagem enxuta:
+
+```dockerfile
+# syntax=docker/dockerfile:1
+FROM golang:1.23 AS build
+WORKDIR /src
+COPY . .
+RUN CGO_ENABLED=0 go build -o /app ./cmd/app
+
+FROM gcr.io/distroless/static-debian12
+COPY --from=build /app /app
+USER nonroot:nonroot
+ENTRYPOINT ["/app"]
 ```

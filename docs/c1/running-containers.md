@@ -1,48 +1,56 @@
 # Rodando containers
 
-Verifique se está com docker corretamente funcionando, para isso execute o comando:
+Verifique se o Docker está funcionando corretamente:
 
 ```
 docker version
 ```
 
-Sua saída deve ser algo parecido com:
+A saída deve ser parecida com:
 
 ```
-rafael @ nazgul ~
-└─ $ ▶ docker version
-Client:
- Version:	17.12.0-ce
- API version:	1.35
- Go version:	go1.9.2
- Git commit:	c97c6d6
- Built:	Wed Dec 27 20:03:51 2017
- OS/Arch:	darwin/amd64
+Client: Docker Engine - Community
+ Version:           27.3.1
+ API version:       1.47
+ Go version:        go1.22.7
+ Git commit:        ce12230
+ Built:             Fri Sep 20 11:41:00 2024
+ OS/Arch:           linux/amd64
+ Context:           default
 
-Server:
+Server: Docker Engine - Community
  Engine:
-  Version:	17.12.0-ce
-  API version:	1.35 (minimum version 1.12)
-  Go version:	go1.9.2
-  Git commit:	c97c6d6
-  Built:	Wed Dec 27 20:12:29 2017
-  OS/Arch:	linux/amd64
-  Experimental:	true
+  Version:          27.3.1
+  API version:      1.47 (minimum version 1.24)
+  Go version:       go1.22.7
+  Git commit:       41ca978
+  Built:            Fri Sep 20 11:41:00 2024
+  OS/Arch:          linux/amd64
+ containerd:
+  Version:          1.7.22
+ runc:
+  Version:          1.1.14
 ```
 
 ## Comandos
 
-Para verificar todos os comandos proporcionados por Docker, simplesmente digite:
+Para ver todos os comandos oferecidos pelo Docker, digite:
 
 ```
 docker
 ```
 
-Importante: não esqueça que a linha de comando (CLI) é sua melhor amiga, caso não souber como um comando continua, ou seja, opções deste comando, simplesmente digite:
+Importante: a linha de comando (CLI) é sua melhor amiga. Se não souber as opções
+de um comando, use `--help`:
 
 ```
 docker <comando> --help
 ```
+
+Desde o Docker 1.13 os comandos são organizados por objeto
+(`docker container ...`, `docker image ...`, `docker volume ...`). As formas
+antigas e curtas (`docker run`, `docker ps`, `docker images`) continuam
+funcionando como atalhos.
 
 ## Rodando um container
 
@@ -50,57 +58,43 @@ docker <comando> --help
 docker container run alpine hostname
 ```
 
-Você provavelmente teve uma resposta com letras e números, algo como: *7ed46aef747a*.
-O que acabamos de ver aqui é o nome do container no momento que você o executou.
+Você recebeu de volta um identificador com letras e números, algo como
+*7ed46aef747a*. É o hostname do container, que por padrão é o ID dele.
 
-Vamos explicar por partes o que o comando acima faz:
+Explicando o comando por partes:
 
-* **docker container run** executa um container
-* **alpine** é o nome da imagem que estamos Utilizando
-* **hostname** é o comando que é executado dentro do container, por isso obtemos aquele conjunto de números e letras como resposta quando executamos o comando.
+* **docker container run** cria e executa um container
+* **alpine** é o nome da imagem utilizada
+* **hostname** é o comando executado dentro do container — por isso a saída é
+  aquele conjunto de letras e números
 
-O que iremos ver agora é:
-
-* Executando o comando acima algumas vezes, o resultado mudou?
+Experimente: rodando o comando algumas vezes, o resultado muda?
 
 ## Utilizando imagens
 
+Tudo que roda em um container vem de uma imagem, seja uma imagem que você criou
+ou uma imagem oficial, como a do Alpine acima.
 
-Tudo que iremos executar em um container, vem de uma imagem e essa imagem pode ser uma que você mesmo criou ou uma imagem oficial, como foi o nosso caso acima como o Alpine.
+> Alpine é uma distribuição Linux minúscula. A imagem oficial de container tem
+> por volta de 7 MB.
 
-> Apenas por conhecimento, Alpine é uma distribuição Linux super pequena que neste exato momento em sua versão 3.7.0 tem uma iso de 130MB e o mesmo vale para sua imagem para container, acredite, são 4.5MB de tamanho.
-
-Execute o comando:
-
-```
-docker images
-```
-
-E o resultado deve ser algo assim:
+Liste as imagens locais:
 
 ```
-rafael @ nazgul ~
-└─ $ ▶ docker images
-REPOSITORY                          TAG                    IMAGE ID            CREATED             SIZE
-golang                              1.10.0-alpine3.7       85256d3905e2        7 weeks ago         376MB
-maven                               3.5.2-jdk-8            31eec910d005        7 weeks ago         748MB
-ubuntu                              16.04                  0458a4468cbc        2 months ago        112MB
-ubuntu                              latest                 0458a4468cbc        2 months ago        112MB
-raffaeldutra/gohugo                 latest                 7d6cac06f35c        2 months ago        1.11GB
-golang                              latest                 3858fd70eed2        2 months ago        735MB
-python                              2.7-alpine             0781c116c406        2 months ago        72.4MB
-python                              3.6.4-alpine3.7        4b00a94b6f26        2 months ago        83.4MB
-alpine                              3.4                    c7fc7faf8c28        3 months ago        4.82MB
-alpine                              latest                 3fd9065eaf02        3 months ago        4.15MB
-nginx                               latest                 3f8a4339aadd        3 months ago        108MB
-jenkins                             latest                 5fc84ab0b7ad        3 months ago        809MB
-jenkins                             2.60.3-alpine          2ad007d33253        5 months ago        223MB
-maven                               3.5.2-jdk-8-alpine     293423a981a7        5 months ago        116MB
-java                                openjdk-8-jdk-alpine   3fd9dd82815c        13 months ago       145MB
-java                                8u102-jre              13f413e924a3        17 months ago       309MB
+docker image ls
 ```
 
-O que iremos ver agora é:
+O resultado é parecido com:
+
+```
+REPOSITORY     TAG              IMAGE ID       CREATED        SIZE
+golang         1.23-alpine      c7d7a3d1f0a1   2 weeks ago    248MB
+maven          3.9-eclipse-temurin-21  9b2f7c4e5d6a  3 weeks ago  480MB
+ubuntu         24.04            35a88802559d   4 weeks ago    78.1MB
+python         3.12-alpine      f6a2b3c4d5e6   4 weeks ago    50.9MB
+nginx          latest           195245f0c792   5 weeks ago    193MB
+alpine         3.20             324bc02ae123   6 weeks ago    7.8MB
+```
 
 * Como procurar uma imagem?
 
@@ -111,25 +105,29 @@ docker search <imagem>
 * Como remover uma imagem?
 
 ```
-docker rmi alpine
+docker image rm alpine
 ```
 
-> Aqui iremos obter um erro, pois temos aquele primeiro container -- docker container run alpine hostname -- em funcionamento e não é possível remover uma imagem onde há containers rodando.
+> Aqui você pode obter um erro se ainda houver algum container (mesmo parado)
+> baseado nessa imagem. Remova o container antes, ou use `-f` com cautela.
 
-* Como saber se a imagem que vou utilizar é uma imagem oficial?
+* Onde estão as imagens oficiais e mantidas por fornecedores?
 
-```
-docker search ubuntu
-```
+Hoje o [Docker Hub](https://hub.docker.com) separa **Docker Official Images** e
+**Verified Publisher**. Você pode filtrar por elas na busca do site.
 
-* Como baixamos uma imagem?
-
-```
-docker pull ubuntu
-```
-
-e para baixarmos uma versão específica, como Ubuntu 18.04? Para isso passe após o : a versão que quer utilizar
+* Como baixar uma imagem?
 
 ```
-docker pull ubuntu:18.04
+docker image pull ubuntu
 ```
+
+Para uma versão específica, informe a tag após os `:`
+
+```
+docker image pull ubuntu:24.04
+```
+
+> Dica: prefira sempre uma tag explícita (`ubuntu:24.04`) a `latest`, para builds
+> reproduzíveis. Para fixar de forma imutável, use o digest:
+> `ubuntu@sha256:...`.

@@ -35,7 +35,7 @@ Para saber onde foi gerado este diretório com seu volume, é necessário inspec
 Para inspecionar um volume utilize o comando _inspect_
 
 ```shell
-$ docker volume inspect dados`
+$ docker volume inspect dados
 ```
 
 Com a seguinte saída:
@@ -67,14 +67,17 @@ Volumes tem várias vantagens de utilizar do que `bind mounts`:
 * Volumes contêm vários tipos de drivers para trabalhar localmente, provedores de _Cloud Computing_ (_AWS_, _Google Cloud_, _Azure_ e outros), para encriptar seu conteúdo ou adicionar funcionalidades.
 * Volumes são geralmente uma escolha melhor do que persistir dados na camada de escrita do container, pois o volume não irá aumentar o tamanho do container que o está uando, e o conteúdo do volume é feito totalmente fora de um container.
 
-Para utilizar volumes em linha de comando em Docker, você deve passar o parâmetro `-v`. Vejamos um exemplo:
+Para usar volumes na linha de comando, você pode passar `--mount` (recomendado,
+mais explícito) ou a forma curta `-v` / `--volume`. Vejamos um exemplo:
 
 ```shell
-$ docker run \
---rm \
---volume ubuntu-volume:/tmp ubuntu \
+$ docker run --rm \
+--mount type=volume,source=ubuntu-volume,target=/tmp \
+ubuntu \
 mkdir /tmp/novo-diretorio
 ```
+
+> A forma equivalente com `-v` seria `-v ubuntu-volume:/tmp`.
 
 Com este comando, foi criado um novo diretório em `/tmp/novo-diretorio` dentro do container, porém como estamos usando volumes, podemos achar este dado diretamente em nosso host onde persistimos o dado.
 
@@ -103,7 +106,7 @@ Com a seguinte saída.
 Com o comando abaixo, verifique se o diretório foi criado.
 
 ```shell
-$ sudo ls -la /var/lib/docker/volumes/ubuntu-volume/_data`
+$ sudo ls -la /var/lib/docker/volumes/ubuntu-volume/_data
 ```
 
 Vamos criar mais dois containers apontando para este mesmo volume, mas, em um destes dois containers, vamos criar alguns arquivos, e no outro container devemos poder listar estes novos arquivos.

@@ -38,3 +38,24 @@ deleted: sha256:8ae3118b00c274114fd91dc96628b845e0ff4722717bfdf343c2207bad1ec01f
 
 Total reclaimed space: 70.62MB
 ```
+
+Por padrão o `docker system prune` **não** remove volumes nem imagens que só
+estão sem tag por serem antigas. Para uma limpeza mais agressiva:
+
+```
+docker system prune -a --volumes
+```
+
+- `-a` remove também todas as imagens sem nenhum container associado (não só as
+  *dangling*).
+- `--volumes` remove os volumes anônimos que não estão em uso — cuidado, aqui
+  moram dados.
+
+Também dá para limpar um tipo de objeto por vez:
+
+```
+docker container prune
+docker image prune -a
+docker volume prune
+docker builder prune       # cache de build do BuildKit
+```

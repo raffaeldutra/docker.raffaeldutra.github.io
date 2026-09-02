@@ -1,9 +1,9 @@
-![Docker](https://developers.redhat.com/sites/default/files/styles/article_feature/public/blog/2015/01/docker-whale-home-logo.png?itok=nf2cLFMc)
+![Docker](https://www.docker.com/app/uploads/2023/08/logo-guide-logos-1.svg)
 
 
 ---
 
-**Documentação do projeto**: <a href="https://docker.com/docs" target="_blank">https://docker.com/docs</a>
+**Documentação oficial**: <a href="https://docs.docker.com" target="_blank">https://docs.docker.com</a>
 
 **Código fonte dessa página**: <a href="https://github.com/raffaeldutra/docker.raffaeldutra.github.io" target="_blank">https://github.com/raffaeldutra/docker.raffaeldutra.github.io</a>
 

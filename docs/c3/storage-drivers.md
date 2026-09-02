@@ -1,56 +1,86 @@
 # Storage drivers
 
-Antes de iniciarmos com volumes, é realmente importante entedermos um pouco como funcionam as imagens, pois como foi dito em algum momento, um container só existe se houver uma imagem (em uma forma resumida).
+Antes de falar de volumes, é importante entender um pouco como as imagens
+funcionam, já que um container só existe a partir de uma imagem.
 
-Storage driver permitem que você crie dados em uma camada de escrita/gravação do seu container. O importante aqui neste momento é: *quando contianer parar, nenhum dado será persistifo -- leia-se gravado em disco*.
+O *storage driver* é o que permite gravar dados na camada de escrita do
+container. O ponto central é: **quando o container é removido, tudo que estava
+apenas nessa camada de escrita é perdido**. Hoje o driver padrão no Linux é o
+`overlay2`.
 
 <a name="images-and-layers"></a>
 ### Imagens e camadas (layers)
 
-Uma imagem Docker é criada em várias camadas e cada camada representa uma instrução do seu Dockerfile.
+Uma imagem Docker é feita de várias camadas, e cada instrução do Dockerfile que
+altera o sistema de arquivos gera uma camada.
 
-Vejamos o Dockerfile de exemplo abaixo:
+Veja o Dockerfile de exemplo:
 
-```
-FROM alpine:3.7
+```dockerfile
+FROM alpine:3.20
 
-ADD /etc/motd /root/meu-motd
+COPY entrypoint.sh /root/entrypoint.sh
 
 RUN mkdir -p /root/arquivos/leiame
 
-CMD cat /root/meu-motd
+CMD ["cat", "/root/entrypoint.sh"]
 ```
 
-Cada uma dessas linhas acima representam uma camada (layer). O importante aqui é entender que cada um desses comandos gera uma camada de diferença em relação a outra, ou seja, quando o comando **FROM** foi executado, ele gerou uma camada (layer) **X**. O comando **ADD** gerou uma outra camada com seus arquivos gerando uma camada **Y** e assim respectivamente para os outros comandos.
+O `FROM` traz as camadas da imagem base; o `COPY` gera uma camada com o arquivo
+adicionado; o `RUN` gera outra camada com o diretório criado. (Instruções que
+não mexem no filesystem, como `CMD` e `ENV`, só ajustam metadados.)
 
-Essas camandas (layers) são empilhadas uma em cima ds outras e quando você inicia um novo container você simplesmente adiciona uma nova layer de gravação em cima de todas as outras que já existiam. Se por algum motivo você entrar neste container e modificar qualquer arquivo lá dentro, como provavelmente já fizemos em algum exercício anterior, todas as modificações ficam nesta nova camada que você criou ao executar seu container.
+Essas camadas são empilhadas e são **somente leitura**. Ao iniciar um container,
+o Docker adiciona no topo uma camada de escrita fina. Qualquer arquivo que você
+modificar dentro do container fica nessa camada de escrita, usando *copy-on-write*.
 
-Vejamos esta imagem abaixo:
+![Camadas de um container](images/container-layers.jpg)
 
-![https://docs.docker.com/storage/storagedriver/images/container-layers.jpg](images/container-layers.jpg)
-
-> Imagem retirada da documentação oficial: [https://docs.docker.com/storage/storagedriver/images/container-layers.jpg](https://docs.docker.com/storage/storagedriver/images/container-layers.jpg)
+> Imagem da documentação oficial:
+> <https://docs.docker.com/storage/storagedriver/images/container-layers.jpg>
 
 <a name="containers-and-layers"></a>
 ### Containers e camadas (layers)
 
-A principal e maior diferença entre um container e uma imagem é aquela camada de escrita que acabamos de mencionar acima (camada mais alta do diagrama), aquela onde você pode modificar qualquer coisa dentro de um container que é onde essas modificações serão gravadas.
+A diferença principal entre um container e uma imagem é justamente essa camada
+de escrita no topo.
 
-Quando seu container for deletado essa camada de cima também é removida porém as camadas de baixo irão permanecer -- **por isso muito cuidado com os bancos de dados que irá levantar, ou ainda os dados que você não pode perder, pois usando o padrão de um container, você irá perder tudo** -- e aqui também reside uma beleza super interessante: você usar o reaproveitamento das camadas de baixo, veja a imagem abaixo:
+Quando o container é removido, a camada de escrita some junto — as camadas de
+baixo permanecem. Por isso **muito cuidado com bancos de dados e qualquer dado
+que você não pode perder**: no modelo padrão de um container, você perde tudo.
+Para persistir dados, use *volumes* (a seguir).
 
-![https://docs.docker.com/storage/storagedriver/images/sharing-layers.jpg](images/sharing-layers.jpg)
-> Imagem retirada da documentação oficial: [https://docs.docker.com/storage/storagedriver/images/sharing-layers.jpg](https://docs.docker.com/storage/storagedriver/images/sharing-layers.jpg)
+O lado bom do empilhamento é o reaproveitamento: várias imagens e containers
+compartilham as mesmas camadas base, economizando disco e download.
+
+![Compartilhamento de camadas](images/sharing-layers.jpg)
+
+> Imagem da documentação oficial:
+> <https://docs.docker.com/storage/storagedriver/images/sharing-layers.jpg>
 
 <a name="using-volumes"></a>
-### Usando Volumes
+### Usando volumes
 
-Chegou a hora de brincar um pouco com volumes. Temos dois "modelos" de como utilizar containers aqui:
+Há duas formas de trazer dados que sobrevivem ao container:
 
-1. Mapeando diretório do nosso host
-Aqui podemos escolher o que queremos do nosso host e mapearmo este diretório lá pra dentro do container. Exemplo:
+**1. Mapear um diretório do host (bind mount)**
+
+Você escolhe um caminho do host e o monta dentro do container:
 
 ```
-docker container run --rm --volume /tmp:/root/tmp alpine /bin/sh -c 'echo Eu sou o container de nome $(hostname) > /root/tmp/meu-querido-container'
+docker container run --rm \
+  --mount type=bind,source=/tmp,target=/root/tmp \
+  alpine /bin/sh -c 'echo Eu sou o container $(hostname) > /root/tmp/meu-querido-container'
 ```
 
-2. Mapeando dados de um container
+**2. Usar um volume nomeado, gerenciado pelo Docker**
+
+```
+docker volume create dados
+docker container run --rm \
+  --mount type=volume,source=dados,target=/root/dados \
+  alpine /bin/sh -c 'echo persistido > /root/dados/arquivo'
+```
+
+O conteúdo do volume `dados` continua disponível para o próximo container que o
+montar, mesmo depois que este for removido.
