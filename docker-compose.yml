@@ -1,11 +1,13 @@
 services:
   docs:
     image: squidfunk/mkdocs-material:9
-    # A imagem oficial não traz o plugin de i18n; instala em tempo de subida.
-    entrypoint: ["sh", "-c"]
-    command: >-
-      pip install --no-cache-dir mkdocs-static-i18n &&
-      mkdocs serve --dev-addr=0.0.0.0:8001
+    # A imagem oficial não traz o plugin de i18n; instala em tempo de subida e
+    # depois executa `mkdocs` com os argumentos vindos de `command` ($0 e $@).
+    entrypoint:
+      - sh
+      - -c
+      - pip install --no-cache-dir mkdocs-static-i18n && exec mkdocs "$0" "$@"
+    command: ["serve", "--dev-addr=0.0.0.0:8001"]
     ports:
       - "${BIND:-0.0.0.0}:${PORT:-8011}:8001"
     volumes:
