@@ -21,9 +21,52 @@ extra:
       link: https://hub.docker.com/raffaeldutra
     - icon: fontawesome/brands/linkedin
       link: https://linkedin.com/in/rafaeldutra
-  plugins:
-    markdownextradata:
-      data: ../data
+
+# Internacionalização. O conteúdo padrão (sem sufixo) é português; os arquivos
+# `*.en.md` são a versão em inglês. O seletor de idioma aparece no cabeçalho.
+plugins:
+  - search
+  - i18n:
+      docs_structure: suffix
+      fallback_to_default: true
+      reconfigure_material: true
+      reconfigure_search: true
+      languages:
+        - locale: pt
+          name: Português
+          default: true
+          build: true
+          site_name: Docker
+          site_description: >-
+            Olá! Me chamo Rafael Dutra e aqui encontrará documentação e dicas para Docker.
+        - locale: en
+          name: English
+          build: true
+          site_name: Docker
+          site_description: >-
+            Hi! My name is Rafael Dutra and here you will find documentation and tips for Docker.
+          nav_translations:
+            Instalando: Installing
+            Rodando Containers: Running Containers
+            Gerenciando Containers: Managing Containers
+            Manipulando Containers: Manipulating Containers
+            Interagindo com Containers: Interacting with Containers
+            Limpando: Cleaning Up
+            Imagens: Images
+            Criando Imagens: Building Images
+            Criando Imagens sem Dockerfile: Building Images without a Dockerfile
+            BuildKit e buildx: BuildKit and buildx
+            Introdução: Introduction
+            Redes: Networking
+            Redes no Docker: Docker Networking
+            Rede bridge: Bridge network
+            host, none, macvlan e overlay: host, none, macvlan and overlay
+            Registries e Distribuição: Registries and Distribution
+            Registries e Docker Hub: Registries and Docker Hub
+            Distribuindo imagens: Distributing images
+            Segurança: Security
+            Segurança de containers: Container security
+            Boas práticas de imagens: Image best practices
 
 nav:
   - Docker: index.md

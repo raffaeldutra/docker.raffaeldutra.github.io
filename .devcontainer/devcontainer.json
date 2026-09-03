@@ -3,5 +3,5 @@
   "appPort": ["8001:8001"],
   "workspaceMount": "source=${localWorkspaceFolder},target=/docs,type=bind",
   "workspaceFolder": "/docs",
-  "postStartCommand": "mkdocs serve --dev-addr=0.0.0.0:8001"
+  "postStartCommand": "pip install --no-cache-dir mkdocs-static-i18n && mkdocs serve --dev-addr=0.0.0.0:8001"
 }
