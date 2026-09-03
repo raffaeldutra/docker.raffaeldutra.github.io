@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>https://docker.rafaeldutra.me/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/docker-compose/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/docker-compose/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/docker-compose/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/installing/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/installing/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/installing/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/c1/cleaning/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c1/cleaning/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c1/cleaning/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/c1/interacting-containers/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c1/interacting-containers/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c1/interacting-containers/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/c1/managing-containers/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c1/managing-containers/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c1/managing-containers/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/c1/manipulate-containers/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c1/manipulate-containers/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c1/manipulate-containers/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/c1/running-containers/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c1/running-containers/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c1/running-containers/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/c2/buildkit/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c2/buildkit/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c2/buildkit/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/c2/creating-image-no-dockerfile/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c2/creating-image-no-dockerfile/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c2/creating-image-no-dockerfile/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/c2/creating-image/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c2/creating-image/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c2/creating-image/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/c2/dockerfile/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c2/dockerfile/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c2/dockerfile/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/c2/multi-stage/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c2/multi-stage/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c2/multi-stage/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/c3/storage-drivers/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c3/storage-drivers/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c3/storage-drivers/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/c3/volumes/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c3/volumes/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c3/volumes/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/c4/advanced-networks/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c4/advanced-networks/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c4/advanced-networks/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/c4/bridge/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c4/bridge/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c4/bridge/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/c4/networking/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c4/networking/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c4/networking/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/c5/distribuindo-imagens/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c5/distribuindo-imagens/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c5/distribuindo-imagens/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/c5/registry/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c5/registry/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c5/registry/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/c6/boas-praticas/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c6/boas-praticas/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c6/boas-praticas/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/c6/seguranca/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c6/seguranca/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c6/seguranca/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/en/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/en/docker-compose/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/docker-compose/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/docker-compose/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/en/installing/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/installing/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/installing/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/en/c1/cleaning/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c1/cleaning/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c1/cleaning/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/en/c1/interacting-containers/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c1/interacting-containers/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c1/interacting-containers/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/en/c1/managing-containers/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c1/managing-containers/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c1/managing-containers/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/en/c1/manipulate-containers/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c1/manipulate-containers/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c1/manipulate-containers/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/en/c1/running-containers/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c1/running-containers/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c1/running-containers/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/en/c2/buildkit/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c2/buildkit/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c2/buildkit/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/en/c2/creating-image-no-dockerfile/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c2/creating-image-no-dockerfile/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c2/creating-image-no-dockerfile/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/en/c2/creating-image/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c2/creating-image/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c2/creating-image/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/en/c2/dockerfile/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c2/dockerfile/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c2/dockerfile/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/en/c2/multi-stage/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c2/multi-stage/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c2/multi-stage/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/en/c3/storage-drivers/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c3/storage-drivers/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c3/storage-drivers/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/en/c3/volumes/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c3/volumes/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c3/volumes/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/en/c4/advanced-networks/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c4/advanced-networks/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c4/advanced-networks/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/en/c4/bridge/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c4/bridge/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c4/bridge/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/en/c4/networking/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c4/networking/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c4/networking/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/en/c5/distribuindo-imagens/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c5/distribuindo-imagens/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c5/distribuindo-imagens/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/en/c5/registry/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c5/registry/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c5/registry/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/en/c6/boas-praticas/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c6/boas-praticas/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c6/boas-praticas/"/>
+    </url>
+    <url>
+        <loc>https://docker.rafaeldutra.me/en/c6/seguranca/</loc>
+        <lastmod>2026-09-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docker.rafaeldutra.me/en/c6/seguranca/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docker.rafaeldutra.me/c6/seguranca/"/>
+    </url>
+</urlset>
