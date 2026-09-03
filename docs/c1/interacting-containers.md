@@ -40,20 +40,20 @@ Quando iniciamos um container novo, podemos instalar pacotes, editar/apagar/cria
 Utilizando este conjunto de teclas, nos vem a seguinte pergunta: "E se eu quero retornar ao container, como faço?".
 
 ```
-docker attach <id do container> ou <nome>
+docker attach <container id> or <name>
 ```
 
 Excelente, tudo funcionando como esperado, mas e se eu quero apenas listar algum arquivo ou quem sabe visualizar e assim por diante? ou seja, quero apenas fazer algo breve no meu container?
 
 ```
-docker exec <id do container> ou <nome> ls -la /usr/share/nginx/html
+docker exec <container id> or <name> ls -la /usr/share/nginx/html
 ```
 
 * E se eu quiser um shell interativo dentro do container que já está rodando, sem
   mexer no processo principal (PID 1)? Essa é a forma mais comum no dia a dia:
 
 ```
-docker exec --interactive --tty <id do container> ou <nome> bash
+docker exec --interactive --tty <container id> or <name> bash
 ```
 
 > Se a imagem não tiver o `bash` (imagens enxutas como Alpine), use `sh`.
@@ -61,17 +61,17 @@ docker exec --interactive --tty <id do container> ou <nome> bash
 * Como faço para visualizar o log de um container?
 
 ```
-docker logs <id do container> ou <nome>
+docker logs <container id> or <name>
 ```
 
 * Como faço para visualizar status do meu container?
 
 ```
-docker stats <id do container> ou <nome>
+docker stats <container id> or <name>
 ```
 
 * Como faço para visualizar informações detalhadas de um container?
 
 ```
-docker inspect <id do container> ou <nome>
+docker inspect <container id> or <name>
 ```

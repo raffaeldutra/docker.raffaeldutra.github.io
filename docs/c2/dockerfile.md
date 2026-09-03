@@ -51,11 +51,11 @@ node_modules
 # syntax=docker/dockerfile:1
 FROM nginx:1.27
 
-LABEL org.opencontainers.image.description="Imagem de exemplo do workshop."
+LABEL org.opencontainers.image.description="Workshop example image."
 LABEL org.opencontainers.image.authors="Rafael Dutra <raffaeldutra@gmail.com>"
 
-ENV EVENTO="Docker Workshop" \
-    ANO="2026"
+ENV EVENT="Docker Workshop" \
+    YEAR="2026"
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends git && \

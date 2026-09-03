@@ -15,12 +15,12 @@ seja consistente.
 Recomendado para aplicações:
 
 ```
-minha-api:1.4.0          # versão exata (imutável na prática — nunca sobrescreva)
-minha-api:1.4            # "última 1.4.x" — recebe patches
-minha-api:1              # "última 1.x" — recebe minors compatíveis
-minha-api:latest         # última release estável
-minha-api:sha-9f3c1a2    # commit exato — ótimo para rastrear em produção
-minha-api:2024-06-01     # data do build, se você versiona por data
+my-api:1.4.0          # exact version (immutable in practice — never overwrite)
+my-api:1.4            # "latest 1.4.x" — receives patches
+my-api:1              # "latest 1.x" — receives compatible minors
+my-api:latest         # latest stable release
+my-api:sha-9f3c1a2    # exact commit — great for tracing in production
+my-api:2024-06-01     # build date, if you version by date
 ```
 
 Anti-padrões:
@@ -35,10 +35,10 @@ Anti-padrões:
 Aplicar várias tags no mesmo build:
 
 ```
-docker build -t minha-api:1.4.0 -t minha-api:1.4 -t minha-api:latest .
-docker push minha-api:1.4.0
-docker push minha-api:1.4
-docker push minha-api:latest
+docker build -t my-api:1.4.0 -t my-api:1.4 -t my-api:latest .
+docker push my-api:1.4.0
+docker push my-api:1.4
+docker push my-api:latest
 ```
 
 Cada `push` envia só as camadas que faltam no registry; as três tags apontam
@@ -102,9 +102,9 @@ do host. Force outra com `--platform linux/arm64`.
 Montar uma lista de manifestos a partir de imagens por arquitetura já enviadas:
 
 ```
-docker buildx imagetools create -t empresa/app:1.4.0 \
-  empresa/app:1.4.0-amd64 \
-  empresa/app:1.4.0-arm64
+docker buildx imagetools create -t company/app:1.4.0 \
+  company/app:1.4.0-amd64 \
+  company/app:1.4.0-arm64
 ```
 
 (Ou, mais simples, deixe o `docker buildx build --platform ... --push` fazer
@@ -117,22 +117,22 @@ Analisa as camadas da imagem em busca de pacotes com CVE conhecido.
 `docker scout` (embutido no Docker moderno):
 
 ```
-docker scout quickview minha-api:1.4.0
-docker scout cves minha-api:1.4.0
-docker scout recommendations minha-api:1.4.0     # sugere imagem base melhor
+docker scout quickview my-api:1.4.0
+docker scout cves my-api:1.4.0
+docker scout recommendations my-api:1.4.0     # suggests a better base image
 ```
 
 **Trivy** (open source, muito usado em CI):
 
 ```
 docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
-  aquasec/trivy image --severity HIGH,CRITICAL minha-api:1.4.0
+  aquasec/trivy image --severity HIGH,CRITICAL my-api:1.4.0
 ```
 
 **Grype**:
 
 ```
-grype minha-api:1.4.0
+grype my-api:1.4.0
 ```
 
 Boas práticas:
@@ -151,14 +151,14 @@ Um _SBOM_ (Software Bill of Materials) lista todos os pacotes e versões dentro
 da imagem, em formato padrão (SPDX ou CycloneDX).
 
 ```
-docker scout sbom --format spdx minha-api:1.4.0
-syft minha-api:1.4.0 -o cyclonedx-json > sbom.json
+docker scout sbom --format spdx my-api:1.4.0
+syft my-api:1.4.0 -o cyclonedx-json > sbom.json
 ```
 
 Gerar já no build e anexar ao push:
 
 ```
-docker buildx build --sbom=true --provenance=true -t empresa/app:1.4.0 --push .
+docker buildx build --sbom=true --provenance=true -t company/app:1.4.0 --push .
 ```
 
 ## Assinatura de imagens
@@ -168,15 +168,15 @@ Prova **quem** publicou a imagem e que ela **não foi alterada** depois.
 **cosign** (projeto Sigstore) é o padrão atual:
 
 ```
-# assinatura sem chave (keyless), identidade via OIDC — comum em CI
-cosign sign empresa/app:1.4.0
+# keyless signing, identity via OIDC — common in CI
+cosign sign company/app:1.4.0
 
-# ou com par de chaves
+# or with a key pair
 cosign generate-key-pair
-cosign sign --key cosign.key empresa/app@sha256:...
+cosign sign --key cosign.key company/app@sha256:...
 
-# verificação
-cosign verify --key cosign.pub empresa/app@sha256:...
+# verification
+cosign verify --key cosign.pub company/app@sha256:...
 ```
 
 Assine sempre o **digest**, não a tag (a tag pode mudar depois da assinatura).
@@ -205,8 +205,8 @@ Assim o que passou nos testes é exatamente o que vai para produção.
 `docker push`, preservando o digest e o manifesto multi-arch:
 
 ```
-skopeo copy --all docker://nginx:1.27 docker://registry.interno/nginx:1.27
-crane copy nginx:1.27 registry.interno/nginx:1.27
+skopeo copy --all docker://nginx:1.27 docker://registry.internal/nginx:1.27
+crane copy nginx:1.27 registry.internal/nginx:1.27
 ```
 
 Úteis para _air-gap_, mirror inicial e migração entre provedores.

@@ -92,7 +92,7 @@ privado, chave de licença, credencial de artefato.
 Para `git clone` de repositório privado por SSH:
 
 ```dockerfile
-RUN --mount=type=ssh git clone git@github.com:empresa/lib-privada.git
+RUN --mount=type=ssh git clone git@github.com:company/private-lib.git
 ```
 
 ```
@@ -192,10 +192,10 @@ docker buildx bake --push
 ## Inspecionar o que foi construído
 
 ```
-docker buildx build --progress=plain .    # log completo, sem a UI compacta
-docker buildx history                      # builds recentes (Docker Desktop / versões novas)
-docker buildx du                           # espaço ocupado pelo cache do builder
-docker buildx prune                        # limpa o cache do builder
+docker buildx build --progress=plain .    # full log, without the compact UI
+docker buildx history                      # recent builds (Docker Desktop / newer versions)
+docker buildx du                           # space used by the builder cache
+docker buildx prune                        # clears the builder cache
 ```
 
 ## Gerar SBOM e proveniência

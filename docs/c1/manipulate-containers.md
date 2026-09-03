@@ -7,7 +7,7 @@ Antes tentamos remover a imagem *alpine* e obtivemos um erro, mas o que causou o
 Utilize o comando:
 
 ```
-docker container <comando>
+docker container <command>
 ```
 
 * Queremos listar containers?
@@ -19,13 +19,13 @@ docker container ls
 * Queremos parar?
 
 ```
-docker container stop <nome do container> ou <id do container>
+docker container stop <container name> or <container id>
 ```
 
 * Queremos iniciar?
 
 ```
-docker container start <nome do container> ou <id do container>
+docker container start <container name> or <container id>
 ```
 
 Para a lista de comandos que podemos utilizar, simplesmente execute:

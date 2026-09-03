@@ -48,7 +48,7 @@ resolvedor DNS embutido em `127.0.0.11` dentro de cada container e registra ali 
 docker network create app-net
 
 docker container run -d --name db  --network app-net postgres:16
-docker container run -d --name api --network app-net minha-api:1.0
+docker container run -d --name api --network app-net my-api:1.0
 ```
 
 Agora, de dentro de `api`, o host `db` resolve para o IP do container do
@@ -60,7 +60,7 @@ docker exec api getent hosts db
 ```
 
 A string de conexão da aplicação vira simplesmente
-`postgres://db:5432/meubanco` — sem IP fixo, sem descobrir endereço nenhum.
+`postgres://db:5432/mydb` — sem IP fixo, sem descobrir endereço nenhum.
 
 Aliases adicionais na hora de conectar:
 
@@ -68,8 +68,8 @@ Aliases adicionais na hora de conectar:
 docker container run -d --name api \
   --network app-net \
   --network-alias api \
-  --network-alias api-interna \
-  minha-api:1.0
+  --network-alias api-internal \
+  my-api:1.0
 ```
 
 Se vários containers compartilham o mesmo alias, o DNS interno devolve todos os
@@ -88,30 +88,30 @@ porta**, sem precisar de `-p`. A publicação de portas só é necessária para 
 o serviço para **fora** (host / rede externa).
 
 ```
-docker network create loja
+docker network create shop
 
-# banco: NÃO publica porta nenhuma, só a rede interna acessa
-docker container run -d --name db --network loja \
-  -e POSTGRES_PASSWORD=segredo postgres:16
+# database: publishes NO port, only the internal network can reach it
+docker container run -d --name db --network shop \
+  -e POSTGRES_PASSWORD=secret postgres:16
 
-# api: fala com "db:5432" internamente e publica a 3000 para o host
-docker container run -d --name api --network loja \
-  -e DATABASE_URL=postgres://postgres:segredo@db:5432/postgres \
-  -p 3000:3000 minha-api:1.0
+# api: talks to "db:5432" internally and publishes 3000 to the host
+docker container run -d --name api --network shop \
+  -e DATABASE_URL=postgres://postgres:secret@db:5432/postgres \
+  -p 3000:3000 my-api:1.0
 ```
 
 De dentro de `api`:
 
 ```
-docker exec api curl -s http://localhost:3000/health   # a própria API
-docker exec api nc -z db 5432 && echo "banco alcançável"
+docker exec api curl -s http://localhost:3000/health   # the API itself
+docker exec api nc -z db 5432 && echo "database reachable"
 ```
 
 Do host:
 
 ```
-curl -s http://localhost:3000/health     # funciona: porta publicada
-nc -z localhost 5432                      # falha: 5432 não foi publicada
+curl -s http://localhost:3000/health     # works: published port
+nc -z localhost 5432                      # fails: 5432 was not published
 ```
 
 ## Segmentando com várias redes
@@ -119,17 +119,17 @@ nc -z localhost 5432                      # falha: 5432 não foi publicada
 Padrão comum de duas redes para reduzir a superfície de ataque:
 
 ```
-docker network create --internal backend     # sem saída para a internet
+docker network create --internal backend     # no route to the internet
 docker network create frontend
 
-# banco: só na rede interna
+# database: internal network only
 docker container run -d --name db --network backend postgres:16
 
-# api: nas duas redes — fala com o banco e é exposta pelo proxy
-docker container run -d --name api --network backend minha-api:1.0
+# api: on both networks — talks to the database and is exposed by the proxy
+docker container run -d --name api --network backend my-api:1.0
 docker network connect frontend api
 
-# proxy: só na rede de frente, publica a 80
+# proxy: front network only, publishes port 80
 docker container run -d --name proxy --network frontend -p 80:80 nginx
 ```
 
@@ -179,7 +179,7 @@ travadas silenciosas (conexão abre, mas download grande "pendura"). Ajuste por
 rede:
 
 ```
-docker network create --opt com.docker.network.driver.mtu=1400 rede-vpn
+docker network create --opt com.docker.network.driver.mtu=1400 vpn-net
 ```
 
 Ou globalmente no `daemon.json` com `"mtu": 1400`.

@@ -16,9 +16,9 @@ Sem multi-stage, tudo o que você instala para compilar fica na imagem:
 FROM node:20
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci                 # inclui devDependencies
+RUN npm ci                 # includes devDependencies
 COPY . .
-RUN npm run build          # gera dist/
+RUN npm run build          # generates dist/
 CMD ["node", "dist/server.js"]
 ```
 
@@ -30,7 +30,7 @@ do npm, git — facilmente 1 GB+.
 ```dockerfile
 # syntax=docker/dockerfile:1
 
-# ---------- estágio 1: build ----------
+# ---------- stage 1: build ----------
 FROM node:20 AS build
 WORKDIR /app
 COPY package*.json ./
@@ -38,7 +38,7 @@ RUN npm ci
 COPY . .
 RUN npm run build && npm prune --omit=dev
 
-# ---------- estágio 2: runtime ----------
+# ---------- stage 2: runtime ----------
 FROM node:20-slim AS runtime
 WORKDIR /app
 ENV NODE_ENV=production
@@ -92,8 +92,8 @@ ENTRYPOINT ["/app"]
 ```
 
 ```
-docker build --target test  -t app:test .     # roda os testes no build
-docker build --target prod   -t app:1.4.0 .    # imagem final mínima
+docker build --target test  -t app:test .     # runs the tests during the build
+docker build --target prod   -t app:1.4.0 .    # minimal final image
 ```
 
 Se você não passar `--target`, o build vai até o **último** estágio do arquivo.
@@ -122,7 +122,7 @@ RUN pip install --no-cache-dir ruff && ruff check .
 FROM base AS app
 COPY . .
 USER 1000
-CMD ["python", "-m", "meuapp"]
+CMD ["python", "-m", "myapp"]
 ```
 
 ## Padrão "build → distroless / scratch"
@@ -138,9 +138,9 @@ COPY . .
 RUN cargo build --release
 
 FROM gcr.io/distroless/cc-debian12
-COPY --from=build /src/target/release/meuapp /usr/local/bin/meuapp
+COPY --from=build /src/target/release/myapp /usr/local/bin/myapp
 USER nonroot
-ENTRYPOINT ["meuapp"]
+ENTRYPOINT ["myapp"]
 ```
 
 `scratch` chega a imagens de poucos MB. O custo: **não há shell** para

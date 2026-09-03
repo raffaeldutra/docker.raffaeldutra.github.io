@@ -44,7 +44,7 @@ Importante: a linha de comando (CLI) é sua melhor amiga. Se não souber as opç
 de um comando, use `--help`:
 
 ```
-docker <comando> --help
+docker <command> --help
 ```
 
 Desde o Docker 1.13 os comandos são organizados por objeto
@@ -99,7 +99,7 @@ alpine         3.20             324bc02ae123   6 weeks ago    7.8MB
 * Como procurar uma imagem?
 
 ```
-docker search <imagem>
+docker search <image>
 ```
 
 * Como remover uma imagem?

@@ -57,5 +57,5 @@ Também dá para limpar um tipo de objeto por vez:
 docker container prune
 docker image prune -a
 docker volume prune
-docker builder prune       # cache de build do BuildKit
+docker builder prune       # BuildKit build cache
 ```

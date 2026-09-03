@@ -9,9 +9,9 @@ registry.
 ## Anatomia de um nome de imagem
 
 ```
-registry.example.com:5000/time-a/minha-api:1.4.0
-└──────────┬─────────────┘ └──┬──┘ └───┬───┘ └─┬─┘
-        registry          namespace  repo    tag
+registry.example.com:5000/team-a/my-api:1.4.0
+└──────────┬─────────────┘ └──┬─┘ └─┬──┘ └─┬─┘
+        registry          namespace repo   tag
 ```
 
 * **registry** — host (e porta). Se omitido, o Docker assume
@@ -53,7 +53,7 @@ docker pull docker.io/library/nginx:latest
 
 ```
 docker login                          # Docker Hub
-docker login ghcr.io                   # outro registry
+docker login ghcr.io                   # another registry
 docker login registry.example.com:5000
 ```
 
@@ -66,7 +66,7 @@ Em CI, prefira **token de acesso** (revogável, com escopo) em vez da senha da
 conta:
 
 ```
-echo "$REGISTRY_TOKEN" | docker login ghcr.io -u "$USUARIO" --password-stdin
+echo "$REGISTRY_TOKEN" | docker login ghcr.io -u "$USERNAME" --password-stdin
 ```
 
 Sair:
@@ -79,8 +79,8 @@ docker logout ghcr.io
 
 ```
 docker pull redis:7.4
-docker image tag minha-api:1.4.0 registry.example.com:5000/time-a/minha-api:1.4.0
-docker push registry.example.com:5000/time-a/minha-api:1.4.0
+docker image tag my-api:1.4.0 registry.example.com:5000/team-a/my-api:1.4.0
+docker push registry.example.com:5000/team-a/my-api:1.4.0
 ```
 
 Você só consegue dar `push` para um repositório onde tem permissão de escrita —
@@ -123,7 +123,7 @@ docker container run -d --name registry -p 443:5000 \
 E autenticação básica com `htpasswd` (bcrypt):
 
 ```
-docker run --rm --entrypoint htpasswd httpd:2 -Bbn admin senha > auth/htpasswd
+docker run --rm --entrypoint htpasswd httpd:2 -Bbn admin secret > auth/htpasswd
 
 docker container run -d --name registry -p 443:5000 \
   -v "$(pwd)"/auth:/auth -v "$(pwd)"/certs:/certs -v registry-data:/var/lib/registry \
@@ -141,7 +141,7 @@ Se realmente precisar de HTTP sem TLS num host interno, declare-o como
 **inseguro** em `/etc/docker/daemon.json` de cada cliente:
 
 ```json
-{ "insecure-registries": ["registro-interno.lab:5000"] }
+{ "insecure-registries": ["internal-registry.lab:5000"] }
 ```
 
 ```
@@ -165,7 +165,7 @@ docker container run -d --name mirror -p 5000:5000 \
 Nos clientes, `/etc/docker/daemon.json`:
 
 ```json
-{ "registry-mirrors": ["http://mirror-interno.lab:5000"] }
+{ "registry-mirrors": ["http://internal-mirror.lab:5000"] }
 ```
 
 ## Alternativas de registry auto-hospedado

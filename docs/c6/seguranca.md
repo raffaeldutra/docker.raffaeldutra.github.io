@@ -30,7 +30,7 @@ No Dockerfile:
 
 ```dockerfile
 FROM node:20-slim
-# imagens Debian/Node já trazem um usuário "node" (UID 1000)
+# Debian/Node images already ship a "node" user (UID 1000)
 WORKDIR /app
 COPY --chown=node:node . .
 USER node
@@ -51,7 +51,7 @@ USER 1000
 Forçar em tempo de execução (mesmo que a imagem insista em root):
 
 ```
-docker container run --user 1000:1000 minha-img
+docker container run --user 1000:1000 my-img
 ```
 
 ## Sistema de arquivos somente leitura
@@ -63,7 +63,7 @@ docker container run \
   --read-only \
   --tmpfs /tmp:rw,noexec,nosuid,size=64m \
   --tmpfs /run:rw,noexec,nosuid,size=16m \
-  minha-img
+  my-img
 ```
 
 `--read-only` torna o rootfs imutável; os poucos diretórios graváveis viram
@@ -79,8 +79,8 @@ tudo e readicionar só o necessário.
 ```
 docker container run \
   --cap-drop ALL \
-  --cap-add NET_BIND_SERVICE \    # só se precisar escutar em porta < 1024
-  minha-img
+  --cap-add NET_BIND_SERVICE \    # only if you need to listen on a port < 1024
+  my-img
 ```
 
 Um servidor web que roda como não-root e escuta na 8080 normalmente funciona com
@@ -92,7 +92,7 @@ Impede que o processo ganhe privilégios via binários `setuid`/`setgid` (ex.:
 `sudo`, `ping` antigo):
 
 ```
-docker container run --security-opt no-new-privileges:true minha-img
+docker container run --security-opt no-new-privileges:true my-img
 ```
 
 Deveria estar em praticamente todo container.
@@ -104,11 +104,11 @@ bomb_):
 
 ```
 docker container run \
-  --memory 512m --memory-swap 512m \   # sem swap extra
+  --memory 512m --memory-swap 512m \   # no extra swap
   --cpus 1.5 \
   --pids-limit 200 \
   --ulimit nofile=1024:2048 \
-  minha-img
+  my-img
 ```
 
 * `--memory` — teto de RAM; ao estourar, o processo leva OOM kill.
@@ -124,7 +124,7 @@ perigosas (`mount`, `reboot`, `kexec_load`, `ptrace` em alguns modos...) e um
 perfil **AppArmor** (`docker-default`). Não desligue:
 
 ```
-# NÃO faça isso em produção:
+# do NOT do this in production:
 docker run --security-opt seccomp=unconfined ...
 docker run --security-opt apparmor=unconfined ...
 ```
@@ -133,7 +133,7 @@ Perfil seccomp customizado (mais restritivo), quando você sabe exatamente as
 syscalls que a app usa:
 
 ```
-docker run --security-opt seccomp=/caminho/meu-profile.json minha-img
+docker run --security-opt seccomp=/path/my-profile.json my-img
 ```
 
 ## O que nunca fazer (a não ser que saiba o porquê)
@@ -166,7 +166,7 @@ Quando containers rodam código não confiável (multi-tenant, CI de terceiros):
   com kernel próprio.
 
 ```
-docker run --runtime=runsc minha-img          # após instalar o gVisor
+docker run --runtime=runsc my-img          # after installing gVisor
 ```
 
 ## Segredos
@@ -180,9 +180,9 @@ docker run --runtime=runsc minha-img          # após instalar o gVisor
 
 ```
 # Swarm / Compose
-echo "s3nh4" | docker secret create db_password -
-docker service create --secret db_password minha-img
-# a app lê /run/secrets/db_password
+echo "s3cr3t" | docker secret create db_password -
+docker service create --secret db_password my-img
+# the app reads /run/secrets/db_password
 ```
 
 ## Superfície do host (Docker daemon)

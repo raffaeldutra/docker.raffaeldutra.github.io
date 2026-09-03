@@ -5,13 +5,13 @@ Volumes são totalmente gerenciados e criados por Docker e você pode criá-los 
 .Comando para criar um volume
 
 ```shell
-$ docker volume create <nome do volume>
+$ docker volume create <volume name>
 ```
 
 .Exemplo de como criar um volume e chamá-lo de _dados_.
 
 ```shell
-$ docker volume create dados
+$ docker volume create data
 ```
 
 Para listar os volumes.
@@ -24,7 +24,7 @@ Com a seguinte saída:
 
 ```shell
 DRIVER              VOLUME NAME
-local               dados
+local               data
 local               e8bf838bebbe3576313a6b37a26ab93d1fbb4865174710d9cb4d80366e85c674
 ```
 
@@ -35,7 +35,7 @@ Para saber onde foi gerado este diretório com seu volume, é necessário inspec
 Para inspecionar um volume utilize o comando _inspect_
 
 ```shell
-$ docker volume inspect dados
+$ docker volume inspect data
 ```
 
 Com a seguinte saída:
@@ -46,8 +46,8 @@ Com a seguinte saída:
         "CreatedAt": "2019-01-30T14:00:29-02:00",
         "Driver": "local",
         "Labels": {},
-        "Mountpoint": "/var/lib/docker/volumes/dados/_data",
-        "Name": "dados",
+        "Mountpoint": "/var/lib/docker/volumes/data/_data",
+        "Name": "data",
         "Options": {},
         "Scope": "local"
     }
@@ -74,7 +74,7 @@ mais explícito) ou a forma curta `-v` / `--volume`. Vejamos um exemplo:
 $ docker run --rm \
 --mount type=volume,source=ubuntu-volume,target=/tmp \
 ubuntu \
-mkdir /tmp/novo-diretorio
+mkdir /tmp/new-directory
 ```
 
 > A forma equivalente com `-v` seria `-v ubuntu-volume:/tmp`.
@@ -127,7 +127,7 @@ root@a83a59e4555c:/# ls -la /tmp/
 total 12
 drwxrwxrwt 3 root root 4096 Jan 30 21:40 .
 drwxr-xr-x 1 root root 4096 Jan 30 22:07 ..
-drwxr-xr-x 2 root root 4096 Jan 30 21:40 novo-diretorio
+drwxr-xr-x 2 root root 4096 Jan 30 21:40 new-directory
 ```
 
 Abra um novo terminal e rode um novo container, criando alguns arquivos dentro do diretório `tmp`.
@@ -145,7 +145,7 @@ Criando novos diretórios no diretório `/tmp`
 
 ```shell
 cd /tmp
-root@71df4a42bc32:/tmp# mkdir -p diretorio-a diretorio-b diretorio-c/subdiretorio-a
+root@71df4a42bc32:/tmp# mkdir -p directory-a directory-b directory-c/subdirectory-a
 ```
 
 Liste no primeiro container o diretório `tmp`.
@@ -155,10 +155,10 @@ root@a83a59e4555c:/# ls -la /tmp/
 total 24
 drwxrwxrwt 6 root root 4096 Jan 30 22:13 .
 drwxr-xr-x 1 root root 4096 Jan 30 22:07 ..
-drwxr-xr-x 2 root root 4096 Jan 30 22:13 diretorio-a
-drwxr-xr-x 2 root root 4096 Jan 30 22:13 diretorio-b
-drwxr-xr-x 3 root root 4096 Jan 30 22:13 diretorio-c
-drwxr-xr-x 2 root root 4096 Jan 30 21:40 novo-diretorio
+drwxr-xr-x 2 root root 4096 Jan 30 22:13 directory-a
+drwxr-xr-x 2 root root 4096 Jan 30 22:13 directory-b
+drwxr-xr-x 3 root root 4096 Jan 30 22:13 directory-c
+drwxr-xr-x 2 root root 4096 Jan 30 21:40 new-directory
 ```
 
 ## Bind Mounts
@@ -173,9 +173,9 @@ Para utilizar *bind mounts* apenas passe este argumento quando chamar um novo co
 
 ```shell
 $ docker run -it \
---mount type=bind,source=/tmp/teste,target=/tmp/teste \
+--mount type=bind,source=/tmp/test,target=/tmp/test \
 alpine \
-ls -la /tmp/teste
+ls -la /tmp/test
 ```
 
 Com a seguinte saída:
@@ -184,5 +184,5 @@ Com a seguinte saída:
 total 4
 drwxr-xr-x    3 root     root            96 Feb 17 00:30 .
 drwxrwxrwt    1 root     root          4096 Feb 17 00:30 ..
-drwxr-xr-x    2 root     root            64 Feb 17 00:30 diretorio-a
+drwxr-xr-x    2 root     root            64 Feb 17 00:30 directory-a
 ```

@@ -19,7 +19,7 @@ Certo, agora temos um servidor web funcionando com apenas um comando na porta 45
 Vamos parar o container:
 
 ```
-docker container stop <id do container>
+docker container stop <container id>
 ```
 
 Acesse novamente o seu browser e tente acessar a porta 45000.
@@ -27,5 +27,5 @@ Acesse novamente o seu browser e tente acessar a porta 45000.
 Vamos subir novamente o container com o comando:
 
 ```
-docker container start <id do container>
+docker container start <container id>
 ```

@@ -106,13 +106,13 @@ Use a **forma exec** (lista JSON) em `ENTRYPOINT`/`CMD` para o processo virar PI
 
 ```dockerfile
 CMD ["nginx", "-g", "daemon off;"]      # ✅ exec
-# CMD nginx -g 'daemon off;'            # ❌ shell: vira "/bin/sh -c ...", engole sinais
+# CMD nginx -g 'daemon off;'            # ❌ shell: becomes "/bin/sh -c ...", swallows signals
 ```
 
 Se a app não repassa sinais aos filhos ou deixa zumbis, adicione um init:
 
 ```
-docker container run --init minha-img
+docker container run --init my-img
 ```
 
 ou `ENTRYPOINT ["tini", "--"]` na imagem.
@@ -135,9 +135,9 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=20s --retries=3 \
 ## Metadados: labels OCI
 
 ```dockerfile
-LABEL org.opencontainers.image.title="minha-api" \
-      org.opencontainers.image.description="API de pedidos" \
-      org.opencontainers.image.source="https://github.com/empresa/minha-api" \
+LABEL org.opencontainers.image.title="my-api" \
+      org.opencontainers.image.description="Orders API" \
+      org.opencontainers.image.source="https://github.com/company/my-api" \
       org.opencontainers.image.licenses="MIT"
 ```
 
@@ -211,7 +211,7 @@ USER 1000
 EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=3s --start-period=15s \
   CMD python -c "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:8000/health').status==200 else 1)"
-ENTRYPOINT ["gunicorn", "-b", "0.0.0.0:8000", "meuapp.wsgi"]
+ENTRYPOINT ["gunicorn", "-b", "0.0.0.0:8000", "myapp.wsgi"]
 ```
 
 ## Checklist de Dockerfile

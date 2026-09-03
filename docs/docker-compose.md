@@ -86,10 +86,10 @@ Explicando o arquivo:
 ## Comandos principais
 
 ```bash
-docker compose up -d        # sobe a stack em segundo plano
-docker compose ps           # lista os serviços da stack
-docker compose logs -f      # acompanha os logs
-docker compose exec db bash # abre um shell no serviço "db"
-docker compose down         # remove containers e redes
-docker compose down -v      # idem, e também remove os volumes nomeados
+docker compose up -d        # start the stack in the background
+docker compose ps           # list the stack services
+docker compose logs -f      # follow the logs
+docker compose exec db bash # open a shell in the "db" service
+docker compose down         # remove containers and networks
+docker compose down -v      # same, and also remove the named volumes
 ```

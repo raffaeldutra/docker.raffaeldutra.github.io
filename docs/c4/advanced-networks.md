@@ -12,7 +12,7 @@ NAT, não há publicação de portas — se a aplicação escuta na `8080`, ela 
 
 ```
 docker container run -d --network host nginx
-curl http://localhost:80          # já responde, sem -p
+curl http://localhost:80          # responds already, no -p
 ```
 
 Vantagens:
@@ -72,7 +72,7 @@ docker network create -d macvlan \
 * `--subnet`/`--gateway` — os da sua LAN real.
 
 ```
-docker container run -d --name legado --network lan --ip 192.168.0.50 minha-img
+docker container run -d --name legacy --network lan --ip 192.168.0.50 my-img
 ```
 
 Pontos de atenção:
@@ -106,10 +106,10 @@ subnet e se falam como se estivessem no mesmo switch.
 É o driver nativo do **Docker Swarm**. Para usá-lo é preciso ter um Swarm ativo:
 
 ```
-# no primeiro nó
+# on the first node
 docker swarm init --advertise-addr 203.0.113.10
 
-# a saída te dá o comando pra rodar nos outros nós:
+# the output gives you the command to run on the other nodes:
 docker swarm join --token SWMTKN-1-xxxx 203.0.113.10:2377
 ```
 

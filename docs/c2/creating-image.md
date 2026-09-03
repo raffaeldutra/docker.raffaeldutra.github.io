@@ -6,7 +6,7 @@ geramos nossas próprias imagens de forma organizada e reproduzível.
 O comando é:
 
 ```
-docker build --tag nome-da-imagem:0.1 .
+docker build --tag image-name:0.1 .
 ```
 
 Duas observações:
@@ -45,6 +45,6 @@ e enviá-las de uma vez para um registro, use o Buildx:
 ```
 docker buildx build \
   --platform linux/amd64,linux/arm64 \
-  --tag seu-usuario/workshop-nginx:0.1 \
+  --tag your-username/workshop-nginx:0.1 \
   --push .
 ```

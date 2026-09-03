@@ -27,7 +27,7 @@ O Docker implementa o **CNM** (_Container Network Model_) através da biblioteca
  └───────┬───────┘                   └───────┬───────┘
      veth│                              veth │
      ┌───┴──────────────────────────────────┴───┐
-     │            bridge  br-1a2b3c              │  ← rede definida pelo usuário
+     │            bridge  br-1a2b3c              │  ← user-defined network
      └────────────────────┬─────────────────────┘
                           │  NAT (iptables MASQUERADE)
                     ┌─────┴─────┐
@@ -104,7 +104,7 @@ podem ser removidas**.
 Criar uma rede definida pelo usuário:
 
 ```
-docker network create minha-rede
+docker network create my-net
 ```
 
 Com opções mais explícitas:
@@ -127,14 +127,14 @@ docker network create \
 Conectar e desconectar containers de uma rede **em tempo de execução**:
 
 ```
-docker network connect backend meu-container
-docker network disconnect backend meu-container
+docker network connect backend my-container
+docker network disconnect backend my-container
 ```
 
 Já subir o container conectado a uma rede:
 
 ```
-docker container run -d --name api --network backend minha-api:1.0
+docker container run -d --name api --network backend my-api:1.0
 ```
 
 Um container pode estar em várias redes ao mesmo tempo — uma prática comum é ter
@@ -189,17 +189,17 @@ encaminhado (via `iptables`/`docker-proxy`) para a porta `80` do container.
 Variações:
 
 ```
--p 80:80                # porta 80 do host → 80 do container
--p 127.0.0.1:8080:80    # publica só no loopback do host (não expõe na LAN)
--p 8080:80/udp          # protocolo UDP
--p 80                   # porta aleatória do host (veja com "docker port")
--P                      # publica TODAS as portas do EXPOSE em portas aleatórias
+-p 80:80                # host port 80 → container port 80
+-p 127.0.0.1:8080:80    # publishes only on the host loopback (not exposed on the LAN)
+-p 8080:80/udp          # UDP protocol
+-p 80                   # random host port (see it with "docker port")
+-P                      # publishes ALL EXPOSE ports on random ports
 ```
 
 Ver o mapeamento efetivo:
 
 ```
-docker port meu-container
+docker port my-container
 ```
 
 !!! warning "`-p` fura o firewall"
@@ -221,17 +221,17 @@ Dentro dele você tem `dig`, `curl`, `ping`, `nc`, `tcpdump`, `ip`, `ss`,
 `nmap`... Checklist rápido:
 
 ```
-dig api                 # o DNS interno resolve o nome do outro container?
-ping -c1 api            # há rota L3 até ele?
-curl -v http://api:8080/health   # a aplicação responde na porta esperada?
-ip route                # a tabela de rotas do sandbox está como esperado?
+dig api                 # does the internal DNS resolve the other container's name?
+ping -c1 api            # is there an L3 route to it?
+curl -v http://api:8080/health   # does the app respond on the expected port?
+ip route                # is the sandbox routing table as expected?
 ```
 
 Do lado do host:
 
 ```
-docker network inspect backend      # o container está mesmo nessa rede?
-docker exec api ss -tlnp            # a aplicação está escutando em 0.0.0.0?
+docker network inspect backend      # is the container really on this network?
+docker exec api ss -tlnp            # is the app listening on 0.0.0.0?
 ```
 
 !!! note "Escutar em `127.0.0.1` dentro do container é uma armadilha"
@@ -243,6 +243,6 @@ docker exec api ss -tlnp            # a aplicação está escutando em 0.0.0.0?
 ## Removendo redes
 
 ```
-docker network rm backend            # remove uma rede específica (sem containers)
-docker network prune                 # remove todas as redes sem containers
+docker network rm backend            # removes a specific network (with no containers)
+docker network prune                 # removes all networks with no containers
 ```

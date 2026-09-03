@@ -7,7 +7,7 @@ container com `docker container commit`. É útil para experimentos rápidos, ma
 Entre em um container interativo:
 
 ```
-docker container run --interactive --tty --name meu-ubuntu ubuntu /bin/bash
+docker container run --interactive --tty --name my-ubuntu ubuntu /bin/bash
 ```
 
 Dentro do container, faça as alterações que quiser — instalar pacotes, criar
@@ -22,9 +22,9 @@ imagem a partir dele:
 
 ```
 docker container commit \
-  --message "adiciona curl" \
+  --message "add curl" \
   --author "Rafael Dutra <raffaeldutra@gmail.com>" \
-  meu-ubuntu workshop/ubuntu-curl:0.1
+  my-ubuntu workshop/ubuntu-curl:0.1
 ```
 
 Confira que a imagem existe e rode um container a partir dela:

@@ -21,7 +21,7 @@ FROM alpine:3.20
 
 COPY entrypoint.sh /root/entrypoint.sh
 
-RUN mkdir -p /root/arquivos/leiame
+RUN mkdir -p /root/files/readme
 
 CMD ["cat", "/root/entrypoint.sh"]
 ```
@@ -70,17 +70,17 @@ Você escolhe um caminho do host e o monta dentro do container:
 ```
 docker container run --rm \
   --mount type=bind,source=/tmp,target=/root/tmp \
-  alpine /bin/sh -c 'echo Eu sou o container $(hostname) > /root/tmp/meu-querido-container'
+  alpine /bin/sh -c 'echo I am container $(hostname) > /root/tmp/my-dear-container'
 ```
 
 **2. Usar um volume nomeado, gerenciado pelo Docker**
 
 ```
-docker volume create dados
+docker volume create data
 docker container run --rm \
-  --mount type=volume,source=dados,target=/root/dados \
-  alpine /bin/sh -c 'echo persistido > /root/dados/arquivo'
+  --mount type=volume,source=data,target=/root/data \
+  alpine /bin/sh -c 'echo persisted > /root/data/file'
 ```
 
-O conteúdo do volume `dados` continua disponível para o próximo container que o
+O conteúdo do volume `data` continua disponível para o próximo container que o
 montar, mesmo depois que este for removido.
