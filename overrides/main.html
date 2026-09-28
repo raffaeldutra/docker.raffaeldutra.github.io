@@ -11,9 +11,21 @@
   Para blocos manuais, insira um <ins class="adsbygoogle" ...> com o
   data-ad-slot correspondente diretamente no Markdown ou em um parcial
   do tema (ex.: overrides/partials/content.html).
+
+  Adcash.
+
+  Auto Tag do Adcash: carrega a lib e roda aclib.runAutoTag em todas as
+  páginas, posicionando anúncios automaticamente com base na zoneId do
+  painel do Adcash (https://adcash.com/).
 #}
 {% block extrahead %}
   {{ super() }}
+  <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
+  <script type="text/javascript">
+    aclib.runAutoTag({
+        zoneId: 'hm1q3e5qbj',
+    });
+  </script>
   <script async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6990614348596318"
     crossorigin="anonymous"></script>
